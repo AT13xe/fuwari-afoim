@@ -4,7 +4,6 @@ published: 2025-08-10
 description: '……'
 image: 'https://pic.at13xe.top/h'
 tags: [welcome]
-categories: '记录'
 draft: false 
 pinned: true
 ---
