@@ -1,17 +1,15 @@
 ---
 import { Icon } from "astro-icon/components";
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
+
 import { getDir, url } from "../utils/url-utils";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
-import { umamiConfig } from "../config";
+import { umamiConfig, statsConfig } from "../config";
 
 interface Props {
 	class: string;
 	published: Date;
 	updated?: Date;
 	tags: string[];
-	category: string;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
 	slug?: string;
@@ -20,7 +18,6 @@ const {
 	published,
 	updated,
 	tags,
-	category,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
 	slug,
@@ -49,21 +46,6 @@ const className = Astro.props.class;
         </div>
     )}
 
-    <!-- categories -->
-    <div class="flex items-center">
-        <div class="meta-icon"
-        >
-            <Icon name="material-symbols:book-2-outline-rounded" class="text-xl"></Icon>
-        </div>
-        <div class="flex flex-row flex-nowrap items-center">
-            <a href={url(`/archive/category/${category || 'uncategorized'}/`)} aria-label=`View all posts in the ${category} category`
-               class="link-lg transition text-50 text-sm font-medium
-                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
-                {category || i18n(I18nKey.uncategorized)}
-            </a>
-        </div>
-    </div>
-
     <!-- tags -->
     <div class:list={["items-center", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
         <div class="meta-icon"
@@ -79,7 +61,7 @@ const className = Astro.props.class;
                     {tag}
                 </a>
             ))}
-            {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
+            {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">无标签</div>}
         </div>
     </div>
 
@@ -89,27 +71,27 @@ const className = Astro.props.class;
             <div class="meta-icon">
                 <Icon name="material-symbols:visibility-outline-rounded" class="text-xl"></Icon>
             </div>
-            <span class="text-50 text-sm font-medium" id="page-views-display">加载中...</span>
+            <span class="text-50 text-sm font-medium" id="page-views-display">{statsConfig.loadingText}</span>
         </div>
     )}
 </div>
 
 {slug && (
-    <script define:vars={{ slug, umamiConfig }}>
+    <script define:vars={{ slug, umamiConfig, unavailableText: statsConfig.unavailableText, viewsText: statsConfig.viewsText, visitsText: statsConfig.visitsText }}>
+        // 客户端统计文案生成函数
+        function generateStatsText(pageViews, visits) {
+            return `${viewsText} ${pageViews} · ${visitsText} ${visits}`;
+        }
+        
         // 获取访问量统计
-        async function fetchPageViews() {
+        async function fetchPageViews(isRetry = false) {
             if (!umamiConfig.enable) {
                 return;
             }
             
             try {
-                // 第一步：获取网站ID和token
-                const shareResponse = await fetch(`${umamiConfig.baseUrl}/api/share/${umamiConfig.shareId}`);
-                if (!shareResponse.ok) {
-                    throw new Error('获取分享信息失败');
-                }
-                const shareData = await shareResponse.json();
-                const { websiteId, token } = shareData;
+                // 调用全局工具获取 Umami 分享数据
+                const { websiteId, token } = await getUmamiShareData(umamiConfig.baseUrl, umamiConfig.shareId);
                 
                 // 第二步：获取统计数据
                 const currentTimestamp = Date.now();
@@ -122,6 +104,10 @@ const className = Astro.props.class;
                 });
                 
                 if (!statsResponse.ok) {
+                    if (statsResponse.status === 401 && !isRetry) {
+                        clearUmamiShareCache();
+                        return fetchPageViews(true);
+                    }
                     throw new Error('获取统计数据失败');
                 }
                 
@@ -131,13 +117,13 @@ const className = Astro.props.class;
                 
                 const displayElement = document.getElementById('page-views-display');
                 if (displayElement) {
-                    displayElement.textContent = `浏览量 ${pageViews} · 访问数 ${visits}`;
+                    displayElement.textContent = generateStatsText(pageViews, visits);
                 }
             } catch (error) {
                 console.error('Error fetching page views:', error);
                 const displayElement = document.getElementById('page-views-display');
                 if (displayElement) {
-                    displayElement.textContent = '统计不可用';
+                    displayElement.textContent = unavailableText;
                 }
             }
         }
