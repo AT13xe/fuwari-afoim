@@ -28,3 +28,5 @@ yarn.lock
 
 .vscode
 
+# 忽略上游仓库
+ori
