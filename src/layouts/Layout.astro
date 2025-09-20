@@ -1,4 +1,5 @@
 ---
+import Analytics from '@vercel/analytics/astro'
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
@@ -113,6 +114,7 @@ const bannerOffset =
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<script src="/js/umami-share.js" defer></script>
 		
 		{/* <!-- Content Security Policy -->
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://giscus.app https://hpic.072103.xyz https://umami.2x.nz https://hm.baidu.com https://www.googletagmanager.com https://www.google-analytics.com https://pagead2.googlesyndication.com https://googleads.g.doubleclick.net https://static.cloudflareinsights.com https://*.adtrafficquality.google; style-src 'self' 'unsafe-inline' https://giscus.app https://fonts.googleapis.com https://api.iconify.design; font-src 'self' https://fonts.gstatic.com https://api.iconify.design; img-src 'self' data: https: http:; connect-src 'self' https://umami.2x.nz https://hm.baidu.com https://www.google-analytics.com https://analytics.google.com https://api.iconify.design https://static.cloudflareinsights.com https://pic.2x.nz https://q2.qlogo.cn https://ep1.adtrafficquality.google https://googleads.g.doubleclick.net; frame-src 'self' https://giscus.app *.bilibili.com https://www.google.com https://googleads.g.doubleclick.net https://support.nodeget.com https://*.adtrafficquality.google; object-src 'none'; base-uri 'self'; form-action 'self';"> */}
@@ -236,27 +238,13 @@ const bannerOffset =
 			}
 		</style>  <!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
 
-
-		<!-- Resource hints for performance optimization -->
-		<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
-		<link rel="preconnect" href="https://googleads.g.doubleclick.net" crossorigin>
-		<link rel="preconnect" href="https://static.cloudflareinsights.com" crossorigin>
-		<link rel="preconnect" href="https://umami.at13xe.top" crossorigin>
-		<link rel="preconnect" href="https://ep1.adtrafficquality.google" crossorigin>
-		<link rel="preconnect" href="https://analytics.google.com" crossorigin>
-		<link rel="preconnect" href="https://api.iconify.design" crossorigin>
-		<link rel="dns-prefetch" href="https://hm.baidu.com">
-		<link rel="dns-prefetch" href="https://www.googletagmanager.com">
-
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
-		<!-- Umami分析（自建） -->
-		<script defer src="https://umami.at13xe.top/script.js" data-website-id="24e11f14-e45f-4425-adfb-c16299cc774a"></script>
-		<!-- 谷歌广告 -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1683686345039700"
-     crossorigin="anonymous"></script>
-	 <meta name="google-adsense-account" content="ca-pub-1683686345039700">
+		{/* <!-- Umami分析（自建） -->
+		<script defer src="https://umami.2x.nz/script.js" data-website-id="4b4e430d-a12c-4a5c-8cf9-df48eb20fd6d"></script> */}
+		<!-- Umami分析（云-备用） -->
+		<script defer src="https://cloud.umami.is/script.js" data-website-id="5d710dbd-3a2e-43e3-a553-97b415090c63"></script>
 		<!-- 百度统计 -->
 <script>
 var _hmt = _hmt || [];
@@ -268,6 +256,18 @@ var _hmt = _hmt || [];
 })();
 </script>
 
+<!-- clarity 分析 -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "t8f0gmcwtx");
+</script>
+<!-- gad -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1683686345039700"
+     crossorigin="anonymous"></script>
+
 		<!-- 谷歌分析 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9Z4LT4H8KH"></script>
 <script>
@@ -278,6 +278,7 @@ var _hmt = _hmt || [];
   gtag('config', 'G-9Z4LT4H8KH');
 </script>
 
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "15fe148e91b34f10a15652e1a74ab26c"}'></script><!-- End Cloudflare Web Analytics -->
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
 		  data-overlayscrollbars-initialize
@@ -289,7 +290,7 @@ var _hmt = _hmt || [];
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
 
 		<!-- 域名检测脚本 -->
-		<script is:inline define:vars={{officialSites: ["https://2x.nz", "https://b.2.f.f.0.7.4.0.1.0.0.2.ip6.arpa/","https://atblog.netlify.app","https://atblog.at13xe.qzz.io","https://blog.at13xe.top"]}}>
+		<script is:inline define:vars={{officialSites: ["https://2x.nz"]}}>
 			// 域名检测功能
 			function checkDomain() {
 				try {
@@ -345,7 +346,7 @@ var _hmt = _hmt || [];
 				checkDomain();
 			}
 		</script>
-
+<Analytics />
 	</body>
 </html>
 
@@ -495,17 +496,7 @@ function initCustomScrollbar() {
 			autoHideSuspend: false,
 		},
 	});
-	const preElements = document.querySelectorAll('pre');
-	preElements.forEach((ele) => {
-		OverlayScrollbars(ele, {
-			scrollbars: {
-				theme: 'scrollbar-base scrollbar-dark px-2',
-				autoHide: 'leave',
-				autoHideDelay: 500,
-				autoHideSuspend: false
-			}
-		});
-	});
+	
 	const katexElements = document.querySelectorAll('.katex-display') as NodeListOf<HTMLElement>;
 	katexElements.forEach((ele) => {
 		OverlayScrollbars(ele, {
