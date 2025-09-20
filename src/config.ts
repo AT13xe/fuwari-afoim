@@ -125,6 +125,15 @@ export const umamiConfig: UmamiConfig = {
 	timezone: "Asia/Shanghai",
 };
 
+export const expressiveCodeConfig: ExpressiveCodeConfig = {
+	theme: "github-dark",
+};
+
+export const gitHubEditConfig: GitHubEditConfig = {
+	enable: false,
+	baseUrl: "https://github.com/AT13xe/fuwari-afoim/blob/main/src/content/posts",
+};
+
 export const statsConfig = {
 	viewsText: "浏览",
 	visitsText: "访客",
