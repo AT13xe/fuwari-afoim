@@ -1,10 +1,12 @@
 ---
-title: hello
+title: Hello
 published: 2025-08-10
-description: '……'
-image: 'https://pic.at13xe.top/h'
-tags: [welcome]
-draft: false 
+description: ……
+image: https://pic.at13xe.top/h
+tags:
+  - Welcome
+draft: false
+lang: ""
 pinned: true
 ---
 # Welcome
