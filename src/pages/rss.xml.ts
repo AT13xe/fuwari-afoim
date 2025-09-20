@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config.ts";
+import { siteConfig } from "@/config";
 import rss from "@astrojs/rss";
 import { getSortedPosts } from "@utils/content-utils";
 import type { APIContext } from "astro";
