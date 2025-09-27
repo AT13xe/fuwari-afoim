@@ -2,7 +2,6 @@
 title: 什么是GFW？
 published: 2025-09-27
 description: 一堵阻挡你看世界的墙
-image:
 tags:
   - GFW
 draft: false
