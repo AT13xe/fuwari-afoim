@@ -11,7 +11,7 @@ import { LinkPreset } from "./types/config";
 export const siteConfig: SiteConfig = {
 	title: "AT13xe Blog",
 	description:
-		"AT13xe's Blog",
+		"分享网络技术及知识，随便写写文章，作者为AT13xe",
 
 	keywords: [],
 	lang: "zh_CN", // 'en', 'zh_CN', 'zh_TW', 'ja', 'ko', 'es', 'th'
