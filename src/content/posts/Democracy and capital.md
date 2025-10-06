@@ -4,7 +4,7 @@ published: 2025-08-31
 description: 仅为个人观点，请勿过分解读
 tags:
   - 制度
-draft: false
+draft: true
 lang: ""
 ---
 # 资本主义  
