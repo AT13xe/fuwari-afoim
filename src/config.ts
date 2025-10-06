@@ -65,11 +65,11 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://pic.at13xe.top",
             external: true,
 		},
-		// {
-			// name: "友链",
-			// url: "/friends/", // Internal links should not include the base path, as it is automatically added
-			// external: false, // Show an external link icon and will open in a new tab
-		// },
+		{
+			name: "友链",
+			url: "/friends/", // Internal links should not include the base path, as it is automatically added
+			external: false, // Show an external link icon and will open in a new tab
+		},
 		// {
 			// name: "赞助",
 			// url: "/donate/", // Internal links should not include the base path, as it is automatically added
@@ -80,11 +80,6 @@ export const navBarConfig: NavBarConfig = {
 			url: "https://umami.at13xe.top/share/JaCVkX59PnWKQwi0", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
-		// {
-			// name: "状态",
-			// url: "https://ss.2x.nz/", // Internal links should not include the base path, as it is automatically added
-			// external: true, // Show an external link icon and will open in a new tab
-		// },
 	],
 };
 
@@ -93,11 +88,6 @@ export const profileConfig: ProfileConfig = {
 	name: "AT13xe",
 	bio: "爱你所爱~ ❤",
 	links: [
-		// {
-			// name: "Bilibli",
-			// icon: "fa6-brands:bilibili",
-			// url: "https://space.bilibili.com/325903362",
-		// },
 		{
 			name: "GitHub",
 			icon: "fa6-brands:github",
@@ -113,7 +103,7 @@ export const licenseConfig: LicenseConfig = {
 };
 
 export const imageFallbackConfig: ImageFallbackConfig = {
-	enable: true,
+	enable: false,
 	originalDomain: "eo-r2.2x.nz",
 	fallbackDomain: "pub-d433ca7edaa74994b3d7c40a7fd7d9ac.r2.dev",
 };
