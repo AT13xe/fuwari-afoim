@@ -1,8 +1,7 @@
 ---
-title: 
+title: 测试
 published: 2025-09-17
-description: 
-image: ../assets/images/obsidian.png
+description: 测试
 tags:
   - Openlist
 draft: false
