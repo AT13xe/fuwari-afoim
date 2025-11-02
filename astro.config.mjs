@@ -33,10 +33,14 @@ export default defineConfig({
       image: {
     service: passthroughImageService()
   },
-    site: "https://blog.at13xe.top",
+    site: "https://blog.2b2x.cn",
     base: "/",
     trailingSlash: "always",
     output: "static",
+    redirects: {
+      "/donate": "/sponsors",
+      "/donate/": "/sponsors/"
+    },
     integrations: [tailwind({
         nesting: true,
 		}), swup({
