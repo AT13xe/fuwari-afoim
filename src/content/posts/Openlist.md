@@ -9,7 +9,7 @@ tags:
   - Android
   - Windows
   - Linux
-draft: false
+draft: true
 pinned: false
 lang: ""
 ---
