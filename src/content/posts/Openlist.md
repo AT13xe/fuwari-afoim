@@ -95,7 +95,7 @@ openlist admin set [新密码]
 首先你要有MT管理器，没有可以去[MT官网](https://mt2.cn)下载  
 然后去openlist的GitHub仓库的[release（点此进入）](https://github.com/OpenListTeam/OpenList/releases)界面  
 找到对应的Android版本以及架构的压缩包下载  
-![android ](../assets/images/openlist_android.png)
+![android ](../assets/images/openlist_android.png)  
 打开MT管理器创建一个名为openlist的文件夹  
 把下好的压缩包移动过去并解压  
 然后侧滑打开终端模拟器
@@ -117,12 +117,12 @@ chmod 777 openlist
 
 ### 无root
 首先要下载[zero termux](https://github.com/hanxinhao000/ZeroTermux/releases)
-打开termux，侧滑打开切换源
-![zerotermux_yuan](../assets/images/openlist_zerotermux_yuan.jpg)
-选择国内源，例如：清华源和北京源
-![zerotermux_yuan_1](../assets/images/openlist_zerotermux_yuam_1.jpg)
-等待换源成功，如果出现提示输入y回车即可
-![zerotermux_yuan_y](../assets/images/openlist_zerotermux_yuan_y.jpg)
+打开termux，侧滑打开切换源  
+![zerotermux_yuan](../assets/images/openlist_zerotermux_yuan.jpg)  
+选择国内源，例如：清华源和北京源  
+![zerotermux_yuan_1](../assets/images/openlist_zerotermux_yuam_1.jpg)  
+等待换源成功，如果出现提示输入y回车即可  
+![zerotermux_yuan_y](../assets/images/openlist_zerotermux_yuan_y.jpg)  
 换完源之后输入
 ```linux
 pkg install openlist
@@ -131,8 +131,8 @@ pkg install openlist
 ```linux
 openlist server
 ```
-第一次启动会有初始密码，请记住它
-![zerotermux_password](../assets/images/openlist_zerotermux_password.jpg)
+第一次启动会有初始密码，请记住它  
+![zerotermux_password](../assets/images/openlist_zerotermux_password.jpg)  
 如果忘记了密码可以用以下命令重置
 ```linux
 openlist admin set [新密码]
@@ -145,14 +145,14 @@ openlist admin set [新密码]
 ---
 
 # 访问
-打开你的浏览器，输入`http://localhost`或`http://127.0.0.1:5244`
-![web_login](../assets/images/openlist_web_login.png)
+打开你的浏览器，输入`http://localhost`或`http://127.0.0.1:5244`  
+![web_login](../assets/images/openlist_web_login.png)  
 用户名：admin  
 密码：部署时显示的默认密码  
-输入完账号密码后点击登录来到主界面，然后点击管理
-![web](../asset/images/openlist_web.png)
-可以在管理界面改密码
-![manage](../assets/images/openlist_web_manage.png)
+输入完账号密码后点击登录来到主界面，然后点击管理  
+![web](../assets/images/openlist_web.png)  
+可以在管理界面改密码  
+![manage](../assets/images/openlist_web_manage.png)  
 剩下的绑定网盘的教程可以去参考下方官方文档
 
 ---
