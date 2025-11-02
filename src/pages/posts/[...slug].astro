@@ -2,12 +2,13 @@
 import path from "node:path";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
-
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
 import { getDir, getPostUrlBySlug } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
-import { gitHubEditConfig, licenseConfig } from "src/config";
+import { licenseConfig } from "src/config";
 import PostMetadata from "../../components/PostMeta.astro";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import { profileConfig, siteConfig } from "../../config";
@@ -56,13 +57,13 @@ const jsonLd = {
                     <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
                         <Icon name="material-symbols:notes-rounded"></Icon>
                     </div>
-                    <div class="text-sm">{remarkPluginFrontmatter.words} 字</div>
+                    <div class="text-sm">{remarkPluginFrontmatter.words} {" " + i18n(I18nKey.wordsCount)}</div>
                 </div>
                 <div class="flex flex-row items-center">
                     <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
                         <Icon name="material-symbols:schedule-outline-rounded"></Icon>
                     </div>
-                    <div class="text-sm">{remarkPluginFrontmatter.minutes} 分钟</div>
+                    <div class="text-sm">{remarkPluginFrontmatter.minutes} {" " + i18n(I18nKey.minutesCount)}</div>
                 </div>
             </div>
 
@@ -100,6 +101,7 @@ const jsonLd = {
                         published={entry.data.published}
                         updated={entry.data.updated}
                         tags={entry.data.tags}
+                        category={entry.data.category}
                         slug={entry.slug}
                 ></PostMetadata>
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
@@ -116,52 +118,11 @@ const jsonLd = {
                 <Content />
             </Markdown>
 
-            <!-- 文章反馈与编辑区域 -->
-            <div class="mb-4 p-4 rounded-lg bg-[var(--license-block-bg)] border border-[var(--line-divider)] onload-animation">
-                <!-- 反馈区域 -->
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="h-5 w-5 rounded bg-[var(--primary)] flex items-center justify-center">
-                            <Icon name="material-symbols:help-outline" class="text-[0.75rem] text-white dark:text-black/70"></Icon>
-                        </div>
-                        <p class="text-black/80 dark:text-white/80 text-sm">这篇文章是否对你有帮助？</p>
-                    </div>
-                </div>
-                
-                {gitHubEditConfig.enable && (
-                    <>
-                        <!-- 分隔线 -->
-                        <div class="border-t border-[var(--line-divider)] my-3"></div>
-                        
-                        <!-- GitHub编辑区域 -->
-                        <div class="flex items-start gap-3">
-                            <div class="h-5 w-5 rounded bg-[var(--primary)] flex items-center justify-center">
-                                <Icon name="material-symbols:edit-outline" class="text-[0.875rem] text-white dark:text-black/70"></Icon>
-                            </div>
-                            <div class="flex-1">
-                                <p class="text-black/80 dark:text-white/80 text-sm mb-1">发现错误或想要改进这篇文章？</p>
-                                <a 
-                                    href={`${gitHubEditConfig.baseUrl}/${entry.slug}.md`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="inline-flex items-center gap-1 text-[var(--primary)] hover:text-[oklch(0.65_0.16_var(--hue))] text-sm font-medium transition-colors"
-                                >
-                                    <Icon name="fa6-brands:github" class="text-[0.875rem]"></Icon>
-                                    在 GitHub 上编辑此页
-                                    <Icon name="material-symbols:open-in-new" class="text-[0.75rem]"></Icon>
-                                </a>
-                            </div>
-                        </div>
-                    </>
-                )}
-            </div>
+
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
-            
-
-            
             <!-- Giscus 评论区 -->
-            <!-- script src="https://giscus.app/client.js"
+            <script src="https://giscus.app/client.js"
                     data-repo="afoim/giscus-fuwari"
                     data-repo-id="R_kgDOOi8quw"
                     data-category="Announcements"
@@ -175,8 +136,8 @@ const jsonLd = {
                     data-lang="zh-CN"
                     data-loading="lazy"
                     crossorigin="anonymous"
-                    async -->
-            <!-- /script -->
+                    async>
+            </script>
     <br>
 
     <div class="flex flex-col md:flex-row justify-between mb-4 gap-4 overflow-hidden w-full">
