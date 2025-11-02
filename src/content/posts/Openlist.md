@@ -59,7 +59,7 @@ OpenList 由开发者社区共同维护，遵循 **AGPL-3.0 开源协议**，鼓
 ![windows_wenjian](../assets/images/openlist_windows_wenjian.png)  
 在该目录下点资源管理器的路经栏输入cmd然后回车  
 ![windows_wenjian_cmd](../assets/images/openlist_windows_wenjian_cmd.png)  
-在cmd中输入
+在cmd中输入  
 ```cmd
 .\openlist.exe server
 ```
@@ -72,15 +72,15 @@ OpenList 由开发者社区共同维护，遵循 **AGPL-3.0 开源协议**，鼓
 ```
 
 ## Linux
-打开命令行输入以下命令
+打开命令行输入以下命令  
 ```linux
 apt install openlist
 ```
-或
+或  
 ```linux
 pkg install openlist
 ```
-安装完后输入
+安装完后输入  
 ```linux
 openlist server
 ```
@@ -103,14 +103,14 @@ openlist admin set [新密码]
 请确保你已授予MT管理器root权限
 :::
 cd到openlist文件夹  
-输入命令
+输入命令  
 ```linux
 su
 chmod 777 openlist
 ./openlist server
 ```
 也是请记住默认密码
-如果忘记密码了可以通过命令重置
+如果忘记密码了可以通过命令重置  
 ```linux
 ./openlist admin set [新密码]
 ```
@@ -123,17 +123,17 @@ chmod 777 openlist
 ![zerotermux_yuan_1](../assets/images/openlist_zerotermux_yuan_1.jpg)  
 等待换源成功，如果出现提示输入y回车即可  
 ![zerotermux_yuan_y](../assets/images/openlist_zerotermux_yuan_y.jpg)  
-换完源之后输入
+换完源之后输入  
 ```linux
 pkg install openlist
 ```
-安装完后输入
+安装完后输入  
 ```linux
 openlist server
 ```
 第一次启动会有初始密码，请记住它  
 ![zerotermux_password](../assets/images/openlist_zerotermux_password.jpg)  
-如果忘记了密码可以用以下命令重置
+如果忘记了密码可以用以下命令重置  
 ```linux
 openlist admin set [新密码]
 ```
