@@ -120,7 +120,7 @@ chmod 777 openlist
 打开termux，侧滑打开切换源  
 ![zerotermux_yuan](../assets/images/openlist_zerotermux_yuan.jpg)  
 选择国内源，例如：清华源和北京源  
-![zerotermux_yuan_1](../assets/images/openlist_zerotermux_yuam_1.jpg)  
+![zerotermux_yuan_1](../assets/images/openlist_zerotermux_yuan_1.jpg)  
 等待换源成功，如果出现提示输入y回车即可  
 ![zerotermux_yuan_y](../assets/images/openlist_zerotermux_yuan_y.jpg)  
 换完源之后输入
